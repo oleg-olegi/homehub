@@ -1,0 +1,19 @@
+# Environment
+.env
+.env.*
+!.env.example
+
+# IntelliJ IDEA
+.idea/
+*.iml
+
+# Maven
+target/
+
+# Frontend
+homehub-frontend/node_modules/
+homehub-frontend/dist/
+homehub-frontend/tsconfig.tsbuildinfo
+
+# Archives
+*.zip
