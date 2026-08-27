@@ -1,0 +1,9 @@
+databaseChangeLog:
+  - include:
+      file: db/changelog/changeset/01_create_users_table.yaml
+  - include:
+      file: db/changelog/changeset/01_create_expense_table.yaml
+  - include:
+      file: db/changelog/changeset/01_create_income_table.yaml
+  - include:
+      file: db/changelog/changeset/01_delete_coumn_users_name_table_users.yaml

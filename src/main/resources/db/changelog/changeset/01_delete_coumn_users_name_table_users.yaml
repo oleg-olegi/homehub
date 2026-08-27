@@ -1,0 +1,14 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: olegshinkevich
+      changes:
+        - dropColumn:
+            tableName: users
+            columnName: users_name
+      preConditions:
+        - onFail: MARK_RAN   # или "CONTINUE" / "HALT"
+        - columnExists:
+            tableName: users
+            columnName: users_name
+

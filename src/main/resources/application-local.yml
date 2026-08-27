@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: homeHub
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres_db
+    username: postgres_user
+    password: postgres_password
+    driver-class-name: org.postgresql.Driver
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.yaml
+jwt:
+  secret: "local-secret-secret-secret-secret-egavaefvgaefgva"
+  expiration: 360 0000
+
+logging:
+  level:
+    org.springframework.security: TRACE
