@@ -10,7 +10,7 @@
     </parent>
     <groupId>by.oleg</groupId>
     <artifactId>homeHub</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
     <name>HomeHub</name>
     <description>HomeHub</description>
     <url/>
@@ -32,6 +32,11 @@
         <mapstruct.version>1.6.3</mapstruct.version>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-mail</artifactId>
+            <version>4.1.1</version>
+        </dependency>
         <dependency>
             <groupId>org.mapstruct</groupId>
             <artifactId>mapstruct</artifactId>

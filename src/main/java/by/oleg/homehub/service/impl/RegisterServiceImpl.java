@@ -6,6 +6,7 @@ import by.oleg.homehub.entity.dto.login.LoginResponseDTO;
 import by.oleg.homehub.entity.dto.RegisterRequestDTO;
 import by.oleg.homehub.entity.enums.Role;
 import by.oleg.homehub.repository.UserRepository;
+import by.oleg.homehub.service.EmailVerificationService;
 import by.oleg.homehub.service.JwtService;
 import by.oleg.homehub.service.RegisterService;
 import lombok.AllArgsConstructor;
@@ -21,6 +22,7 @@ public class RegisterServiceImpl implements RegisterService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtService jwtService;
+    private final EmailVerificationService emailVerificationService;
 
     @Override
     public void registerUser(RegisterRequestDTO request) {
@@ -30,7 +32,9 @@ public class RegisterServiceImpl implements RegisterService {
         user.setUsername(request.username());
         user.setPassword(passwordEncoder.encode(request.password()));
         user.setRole(Role.USER);
-        userRepository.save(user);
+        User savedUser = userRepository.save(user);
+
+        emailVerificationService.createAndSendVerificationToken(savedUser);
     }
 
     @Override
@@ -41,6 +45,11 @@ public class RegisterServiceImpl implements RegisterService {
             throw new BadCredentialsException("Invalid email or password");
         }
         return new LoginResponseDTO(jwtService.generateJwtToken(foundUser));
+    }
+
+    @Override
+    public void verifyEmail(String token) {
+        emailVerificationService.verifyEmail(token);
     }
 
     private void validateNameAndEmail(RegisterRequestDTO request) {

@@ -9,10 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-    import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/auth")
@@ -34,5 +31,13 @@ public class AuthController {
         log.info("Received request to login  {}", login.email());
         LoginResponseDTO token = registerService.login(login);
         return ResponseEntity.ok(token);
+    }
+
+    @GetMapping("/verify")
+    public ResponseEntity<?> verifyEmail(
+            @RequestParam String token) {
+        log.info("Received request to verify email {}", token);
+        registerService.verifyEmail(token);
+        return ResponseEntity.ok("Email successfully verified");
     }
 }

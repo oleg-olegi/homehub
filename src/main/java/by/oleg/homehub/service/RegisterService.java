@@ -8,4 +8,6 @@ public interface RegisterService {
     void registerUser(RegisterRequestDTO user);
 
     LoginResponseDTO login(LoginRequestDTO user);
+
+    void verifyEmail(String token);
 }
